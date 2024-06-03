@@ -29,20 +29,7 @@ FSserver.use(express.json()); // Parse JSON bodies
 
 
 
-// Setup session management
-//  FSserver.use(session({
-//    secret:process.env.secret,
-//    resave:false,
-//    saveUninitialized:true
-//  }))
 
-
-// Initialize passport for authentication
-//  FSserver.use(passport.initialize())
-
-
-// Use passport session management
-//  FSserver.use(passport.session())
 
 
 FSserver.use(router)
