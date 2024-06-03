@@ -14,7 +14,7 @@ exports.userregister = async (req, res) => {
 
         else {
             const newuser =new users({
-                username,password,email,phone:"",adress:""
+                username,password,email,phone:"",adress:"", pincode:"",dist:"",state:"", locality:""
             })
              await newuser.save()
              res.status(200).json(newuser)
@@ -35,11 +35,11 @@ exports.userLogin=async(req,res)=>{
     try{
         const existingUser = await users.findOne({email,password})
         if(existingUser){
-            console.log(existingUser);
+            // console.log(existingUser);
             const token=jwt.sign({email:existingUser.email,username:existingUser.username,userId:existingUser._id},process.env.secrect_key)
-            const rest={token,user:existingUser.username}
-            console.log(token);
-            console.log(rest);
+            const rest={token,user:existingUser.username,userDetails:existingUser}
+            // console.log(token);
+            // console.log(rest);
             res.status(200).json(rest)
         }
         else{
@@ -52,3 +52,41 @@ exports.userLogin=async(req,res)=>{
     }
 
 }
+
+ exports.getuser=async(req,res)=>{
+    try{
+        const result= await users.find()
+        // console.log(result);
+        if(result){
+            res.status(200).json(result)
+        }
+        else{
+            res.status(401).json("No User Avilable")
+        }
+
+    }
+    catch(err){
+        console.log(err);
+        res.status(406).json(err)
+
+    }
+    
+ }
+
+
+ exports.updataeuser=async(req,res)=>{
+    const userId=req.userId
+     const {username,email,phone,adress,pincode,dist,state,locality}=req.body
+
+     try{
+        const update= await users.findByIdAndUpdate({_id:userId},{username,email,phone,adress,pincode,dist,state,locality},{new:true})
+        await update.save()
+        res.status(200).json(update)
+     }
+     catch(err){
+        console.log(err);
+        res.status(401).json(err)
+     }
+
+ }
+

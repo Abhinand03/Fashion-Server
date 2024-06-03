@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const product = require('./ProductModel')
 
 const userSchema=new mongoose.Schema({
     username:{
@@ -19,13 +20,30 @@ const userSchema=new mongoose.Schema({
         require:true
     },
     phone:{
-        type:String,
+        type:Number,
         
     },
     adress:{
         type:String,
         
-    }
+    } ,
+    pincode:{
+        type:Number,
+        
+    },
+    dist:{
+        type:String,
+        
+    },
+    state:{
+        type:String,
+        
+    },
+    locality:{
+        type:String,
+        
+    },
+    
    
 })
    
