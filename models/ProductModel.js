@@ -24,7 +24,20 @@ const productSchema= new mongoose.Schema({
     image:{
         type:String,
         require:true
+    },
+    mrp:{
+        type:Number,
+        require:true
+    },
+    color:{
+        type:String,
+        require:true
+    },
+    meterial:{
+        type:String,
+        require:true
     }
+
 
 })
 

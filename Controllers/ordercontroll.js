@@ -2,11 +2,11 @@ const order=require('../models/ordermodel')
 
 exports.order=async(req,res)=>{
 
-    const {username,phone,adress,picode,dist,state,locality,paymentmode,userId,brand,title,description,quantity,
-        category,price,image,razorpay_payment_id,razorpay_order_id}=req.body
+    const {username,phone,adress,pincode,dist,state,locality,paymentmode,userId,brand,title,description,quantity,
+        category,price,image,razorpay_payment_id,razorpay_order_id,dstatus,deliverydate,email,color}=req.body
     try{
         const newOrder=new order({
-            username,phone,adress,picode,dist,state,locality,paymentmode,userId,brand,title,description,quantity,category,price,image,razorpay_order_id,razorpay_payment_id
+            username,phone,adress,pincode,dist,state,locality,paymentmode,userId,brand,title,description,quantity,category,price,image,razorpay_order_id,razorpay_payment_id,dstatus,deliverydate,email,color
     
               })
               await newOrder.save()
@@ -63,4 +63,26 @@ exports.userorder=async(req,res)=>{
         res.status(406).json(err)
 
     }
+}
+
+exports.delstatus=async(req,res)=>{
+    console.log(req.body);
+
+
+    const {_id}=req.body
+    const {dstatus}=req.body
+    try{
+        const result=await order.findByIdAndUpdate({_id},{dstatus},{new:true})
+        await result.save()
+        res.status(200).json("Delivery Status Updated")
+        
+        
+    }
+    catch(err){
+        console.log(err);
+        res.status(401).json(err)
+
+    }
+    
+
 }

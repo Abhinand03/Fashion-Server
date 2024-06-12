@@ -15,7 +15,7 @@ router.post('/login',usercontroller.userLogin)
 router.put('/user-update',jwt,usercontroller.updataeuser)
 router.post('/add-product',multer.single('image'),productcontroller.addproduct)
 router.get('/all-product',productcontroller.getproduct)
-router.delete('/delete/:pid',productcontroller.deletproduct)
+router.delete('/deletepro/:did',productcontroller.deletproduct)
 router.get('/user',usercontroller.getuser)
 
 router.post('/cart',jwt,addtocart.addtocart)
@@ -39,6 +39,10 @@ router.get('/all-order',ordercontroller.vieworder)
 router.get('/user-order',jwt,ordercontroller.userorder)
 
 router.get('/cat-view/:cat',productcontroller.catveiw)
+
+router.put('/pro-update',multer.single('image'),productcontroller.edit)
+
+router.put('/d-status',ordercontroller.delstatus)
 
 
 
