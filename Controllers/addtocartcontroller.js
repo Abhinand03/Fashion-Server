@@ -8,11 +8,7 @@ exports.addtocart = async (req, res) => {
         const { _id } = req?.body
 
         const productId = _id
-        // console.log(req.body);
-        // console.log("product==",productId);
-
-
-        // console.log("key-==",_id);
+       
 
         const currentuser = req.userId
 
@@ -29,14 +25,14 @@ exports.addtocart = async (req, res) => {
             })
         }
         else {
-            const payload = {
+            const newcart = {
                 productId: productId,
                 quantity: 1,
                 userId: currentuser
 
 
             }
-            const newadtocart = cart(payload)
+            const newadtocart = cart(newcart)
             const savecart = await newadtocart.save()
             res.json({
                 data: savecart,

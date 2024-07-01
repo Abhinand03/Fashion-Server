@@ -16,15 +16,13 @@ const FSserver = express()
 
 
 
-// FSserver.use(Passport)
 
 FSserver.use(cors())
 
 
 
-// Parse JSON request bodies
-// FSserver.use(express.json())
-FSserver.use(express.json()); // Parse JSON bodies
+
+FSserver.use(express.json()); 
 
 
 
